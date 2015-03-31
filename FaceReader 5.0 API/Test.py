@@ -1,6 +1,6 @@
 __author__ = 'Joshua Zosky'
 
-import FaceReaderBind as FRB
+import FaceReaderBindCPython as FRB
 
 a = FRB.Controller('1.1.1.1', 9090)
 print a

@@ -1,8 +1,9 @@
 __author__ = 'Joshua Zosky'
-#version for Iron Python
-
+#version for CPython implemetation of 'Python for .Net
+import sys
 import clr
-clr.AddReferenceToFile("FaceReaderAPI.dll")
+
+clr.AddReference("FaceReaderAPI.dll")
 import FaceReaderAPI as frAPI
 
 
