@@ -4,10 +4,7 @@ In order to utilize these bindings, the python environment will need:
 
 -Python 2.7.x 32-bit Environment (required for Python for .NET)
 
--Python for .NET installed, which entails adding the Python for .NET
-----files "clr.pyd" and "Python.Runtime.dll" to the Python directory (e.g. C:\Python27\).
-----Can be downloaded from: http://sourceforge.net/projects/pythonnet/files/
-----Home of Python for .NET is http://pythonnet.sourceforge.net/ with some documentation.
+-Python for .NET installed, which entails adding the Python for .NET files "clr.pyd" and "Python.Runtime.dll" to the Python directory (e.g. C:\Python27\). Can be downloaded from: http://sourceforge.net/projects/pythonnet/files/. Home of Python for .NET is http://pythonnet.sourceforge.net/ with some documentation.
 
 -Add the file "FaceReaderAPI.dll" to the Python "DLL" folder (e.g. C:\Python27\DLL)
 
