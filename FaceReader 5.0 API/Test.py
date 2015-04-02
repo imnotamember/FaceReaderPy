@@ -3,7 +3,7 @@ __author__ = 'Joshua Zosky'
 import FaceReaderBindCPython as FRB
 
 ## Instantiate the controller with IP address(string) and Port number(integer)
-a = FRB.Controller('1.1.1.1', 9090)
+a = FRB.Controller('127.0.0.1', 9090)
 print a
 ## Check if the controller is instantiated and has an IP address and Port number
 a.check()
