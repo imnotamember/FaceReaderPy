@@ -11,14 +11,19 @@ from FaceReaderAPI import Data as FRData
 class Controller:
 
     def __init__(self, ipAdd, portNum):
-        """define initial values and add an IP address(string) and Port number(integer)"""
+        """
+
+        Define initial values and add an IP address(string) and Port number(integer)
+        :param self.onOff: Bool value, True = turn State Logging on; False = turn State Logging off
+        """
         self.ipAddress = str(ipAdd)
         self.portNumber = int(portNum)
         self.FR_Controller = None
-        self.FR_Data = FRData
-        self.classification = None
+        self.FR_Data = FRData.Classification
+        self.classification = self.FR_Data("")
         self.isRecording = False
         self.currentEvents = {}
+        self.onOff = False
         print ipAdd, portNum
         print self.ipAddress, self.portNumber
         print self.FR_Controller
@@ -51,7 +56,7 @@ class Controller:
     def frc_classification_received(self, source, args):
         """get the classification from the event arguments"""
         print source
-        self.classification = args
+        self.classification = args.Classification
         # FaceReaderAPI.Data.Classification classification = e.Classification
         # # if a classification was received
         if self.classification is not None:
@@ -84,6 +89,16 @@ class Controller:
 
     def connect(self):
         """Instantiate Event Handlers and attempt to connect to FaceReader"""
+        if self.FR_Controller is not None:
+            print 'It Exists'
+            self.FR_Controller.Dispose()
+        else:
+            print "Doesn't exist"
+
+        self.FR_Controller = FRController(self.ipAddress, self.portNumber)
+
+        print "Just created", self.FR_Controller
+
         self.FR_Controller.ClassificationReceived += self.frc_classification_received
         self.FR_Controller.Disconnected += self.frc_disconnected
         self.FR_Controller.Connected += self.frc_connected
@@ -159,3 +174,12 @@ class Controller:
                 print "%s hasn't been restarted yet." % event_name
         except:
             print "%s hasn't been started yet." % event_name
+
+    def state_log(self):
+        """Toggle State Logging to console on/off"""
+        if self.onOff:
+            self.FR_Controller.StopLogSending(LogType.StateLog)
+            self.onOff = False
+        else:
+            self.FR_Controller.StartLogSending(LogType.StateLog)
+            self.onOff = True
