@@ -28,29 +28,29 @@ class Controller:
         print self.ipAddress, self.portNumber
         print self.FR_Controller
 
-    # # Event Handlers # #
+    # # Event Handlers # # --- Had to reinsert (source, args) into each method to catch when the API returns data :P
     @staticmethod
-    def frc_available_stimuli_received(args):
+    def frc_available_stimuli_received(source, args):
         print "Stimuli received:\n%s" % args.Stimuli
 
     @staticmethod
-    def frc_available_event_markers_received(args):
+    def frc_available_event_markers_received(source, args):
         print "Event Markers received:\n%s" % args.EventMarkers
 
     @staticmethod
-    def frc_error_occurred(args):
+    def frc_error_occurred(source, args):
         print "Error occurred %s" % args.Message
 
     @staticmethod
-    def frc_action_succeeded(args):
+    def frc_action_succeeded(source, args):
         print "Action Succeeded: %s" % args.Message
 
     @staticmethod
-    def frc_connected():
+    def frc_connected(source, args):
         print "Connection to FaceReader was successful"
 
     @staticmethod
-    def frc_disconnected():
+    def frc_disconnected(source, args):
         print "Disconnected"
 
     def frc_classification_received(self, source, args):
