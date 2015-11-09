@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/FaceReader 5.0 API.iml" filepath="$PROJECT_DIR$/.idea/FaceReader 5.0 API.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/FaceReader-PythonBindings.iml" filepath="$PROJECT_DIR$/.idea/FaceReader-PythonBindings.iml" />
     </modules>
   </component>
 </project>

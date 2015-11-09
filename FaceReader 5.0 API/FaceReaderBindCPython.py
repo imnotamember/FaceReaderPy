@@ -1,34 +1,55 @@
 __author__ = 'Joshua Zosky'
-"""version for CPython implementation of Python for .Net"""
+"""
+    version for CPython implementation of Python for .Net
+
+    Copyright 2015 Joshua Zosky
+    joshua.e.zosky@gmail.com
+
+    This file is part of "FaceReader Bindings for Python".
+
+    "FaceReader Bindings for Python" is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    "FaceReader Bindings for Python" is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with "FaceReader Bindings for Python".  If not, see <http://www.gnu.org/licenses/>.
+"""
 
 import clr
 clr.AddReference("FaceReaderAPI")  # Load the FaceReaderAPI.dll from the Python DLL's folder
-# from FaceReaderAPI import frAPI
 from FaceReaderAPI import FaceReaderController as FRController
 from FaceReaderAPI import Data as FRData
 
 
 class Controller:
 
-    def __init__(self, ipAdd, portNum):
+    def __init__(self, ip_add="127.0.0.1", port_num=9090):
         """
 
         Define initial values and add an IP address(string) and Port number(integer)
         :param self.onOff: Bool value, True = turn State Logging on; False = turn State Logging off
         """
-        self.ipAddress = str(ipAdd)
-        self.portNumber = int(portNum)
+        self.ipAddress = str(ip_add)
+        self.portNumber = int(port_num)
         self.FR_Controller = None
         self.FR_Data = FRData.Classification
         self.classification = self.FR_Data("")
+        self.detailed_log = []
+        self.state_log = []
         self.isRecording = False
         self.currentEvents = {}
         self.onOff = False
-        print ipAdd, portNum
+        print ip_add, port_num
         print self.ipAddress, self.portNumber
         print self.FR_Controller
 
-    # # Event Handlers # # --- Had to reinsert (source, args) into each method to catch when the API returns data :P
+    # # Event Handlers # #
     @staticmethod
     def frc_available_stimuli_received(source, args):
         print "Stimuli received:\n%s" % args.Stimuli
@@ -64,10 +85,12 @@ class Controller:
             if self.classification.LogType == self.FR_Data.LogType.StateLog:
                 # show the information
                 print "State Log: %s" % self.classification
+                self.state_log.append(self.classification)
                 # if the classification is in the form of a DetailedLog
             else:
                 # show the information
                 print "Detailed Log: %s" % self.classification
+                self.detailed_log.append(self.classification)
 
     # # Methods # #
     def check(self):
@@ -147,7 +170,7 @@ class Controller:
         This event must be followed by an 'end_event_marker' to end the event.
         In FaceReader an event is a time frame of interest in a recording,
         which has both a start and stopping point.
-        The event is thusly added to the currentEvents list to
+        The event is added to the currentEvents list to
         check later if it has been started in order to stop.
         """
         event_name = str(event_name)
@@ -175,7 +198,7 @@ class Controller:
         except:
             print "%s hasn't been started yet." % event_name
 
-    def state_log(self):
+    def state_logging(self):
         """Toggle State Logging to console on/off"""
         if self.onOff:
             self.FR_Controller.StopLogSending(LogType.StateLog)
