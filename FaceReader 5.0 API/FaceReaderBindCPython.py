@@ -40,8 +40,10 @@ class Controller:
         self.FR_Controller = None
         self.FR_Data = FRData.Classification
         self.classification = self.FR_Data("")
-        self.detailed_log = []
-        self.state_log = []
+        self.detailed_log_list = []
+        self.detailed_log = ""
+        self.state_log_list = []
+        self.state_log = ""
         self.isRecording = False
         self.currentEvents = {}
         self.onOff = False
@@ -85,12 +87,14 @@ class Controller:
             if self.classification.LogType == self.FR_Data.LogType.StateLog:
                 # show the information
                 print "State Log: %s" % self.classification
-                self.state_log.append(self.classification)
+                self.state_log_list.append(self.classification)
+                self.state_log = self.classification.ToString()
                 # if the classification is in the form of a DetailedLog
             else:
                 # show the information
                 print "Detailed Log: %s" % self.classification
-                self.detailed_log.append(self.classification)
+                self.detailed_log_list.append(self.classification)
+                self.detailed_log = self.classification.ToString()
 
     # # Methods # #
     def check(self):
@@ -198,11 +202,16 @@ class Controller:
         except:
             print "%s hasn't been started yet." % event_name
 
-    def state_logging(self):
-        """Toggle State Logging to console on/off"""
-        if self.onOff:
-            self.FR_Controller.StopLogSending(LogType.StateLog)
-            self.onOff = False
+    def state_logging(self, on_or_off=False):
+        """Toggle State Logging to on/off, to retrieve State Log info, check the self.state_log variable
+        :param on_or_off: True = Turn State Logging "On"; False = Turn State Logging "Off"; defaults to off
+        """
+        if self.FR_Controller != None:
+            if on_or_off:
+                self.FR_Controller.StartLogSending(LogType.StateLog)
+                self.onOff = True
+            else:
+                self.FR_Controller.StopLogSending(LogType.StateLog)
+                self.onOff = False
         else:
-            self.FR_Controller.StartLogSending(LogType.StateLog)
-            self.onOff = True
+            print "No Controller, connect to FaceReader first."
