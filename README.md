@@ -12,3 +12,6 @@ In order to utilize these bindings, the python environment will need:
 The file Test.py is being used to test implementation of the FaceReaderBindCPython.py module (I hope to get that name down in size. Feel free to suggest some catchy names.)
 
 I'm making the python file for python integration use in experimental research software such as OpenSesame and PsychoPy, not for use in standalone applications, but if you can think of a good use for this let me know and I'll whip something up.
+
+Citation:
+Zosky, J. (2015). FaceReaderAPI bindings for Python. Retrieved November 10, 2015, from https://github.com/imnotamember/FaceReader-PythonBindings
