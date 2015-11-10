@@ -208,10 +208,10 @@ class Controller:
         """
         if self.FR_Controller != None:
             if on_or_off:
-                self.FR_Controller.StartLogSending(LogType.StateLog)
+                self.FR_Controller.StartLogSending(self.FR_Data.LogType.StateLog)
                 self.onOff = True
             else:
-                self.FR_Controller.StopLogSending(LogType.StateLog)
+                self.FR_Controller.StopLogSending(self.FR_Data.LogType.StateLog)
                 self.onOff = False
         else:
             print "No Controller, connect to FaceReader first."
