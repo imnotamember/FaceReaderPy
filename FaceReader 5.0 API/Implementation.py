@@ -12,10 +12,10 @@ a.connect()
 a.state_logging(True)
 
 ## Check for state logging events periodically, you'll want this somewhere in a trial loop
-i = 0
-for i in range(10000):
+while True:
     if a.state_log != "":
         print a.state_log
+        False
 
 ## Disconnect from FaceReader
 a.disconnect()
