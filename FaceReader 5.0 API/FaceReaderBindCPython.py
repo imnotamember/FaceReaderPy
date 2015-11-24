@@ -33,20 +33,22 @@ class Controller:
         """
 
         Define initial values and add an IP address(string) and Port number(integer)
-        :param self.onOff: Bool value, True = turn State Logging on; False = turn State Logging off
+        :param self.state_onOff: Bool value, True = turn State Logging on; False = turn State Logging off
+        :param self.detailed_onOff: Bool value, True = turn Detailed Logging on; False = turn Detailed Logging off
         """
         self.ipAddress = str(ip_add)
         self.portNumber = int(port_num)
         self.FR_Controller = None
-        self.FR_Data = FRData.Classification
-        self.classification = self.FR_Data("")
+        self.FR_Data = FRData
+        self.classification = self.FR_Data.Classification
         self.detailed_log_list = []
         self.detailed_log = ""
         self.state_log_list = []
         self.state_log = ""
         self.isRecording = False
         self.currentEvents = {}
-        self.onOff = False
+        self.state_onOff = False
+        self.detailed_onOff = False
         print ip_add, port_num
         print self.ipAddress, self.portNumber
         print self.FR_Controller
@@ -86,15 +88,15 @@ class Controller:
             # if the classification is in the form of a StateLogs
             if self.classification.LogType == self.FR_Data.LogType.StateLog:
                 # show the information
-                print "State Log: %s" % self.classification
-                self.state_log_list.append(self.classification)
-                self.state_log = self.classification.ToString()
+                #print "State Log: %s" % self.classification
+                #self.state_log_list.append(self.classification)
+                self.state_log = self.classification
                 # if the classification is in the form of a DetailedLog
             else:
                 # show the information
-                print "Detailed Log: %s" % self.classification
-                self.detailed_log_list.append(self.classification)
-                self.detailed_log = self.classification.ToString()
+                #print "Detailed Log: %s" % self.classification
+                #self.detailed_log_list.append(self.classification)
+                self.detailed_log = self.classification
 
     # # Methods # #
     def check(self):
@@ -209,9 +211,22 @@ class Controller:
         if self.FR_Controller != None:
             if on_or_off:
                 self.FR_Controller.StartLogSending(self.FR_Data.LogType.StateLog)
-                self.onOff = True
+                self.state_onOff = True
             else:
                 self.FR_Controller.StopLogSending(self.FR_Data.LogType.StateLog)
-                self.onOff = False
+                self.state_onOff = False
+        else:
+            print "No Controller, connect to FaceReader first."
+        def detailed_logging(self, on_or_off=False):
+        """Toggle State Logging to on/off, to retrieve State Log info, check the self.state_log variable
+        :param on_or_off: True = Turn State Logging "On"; False = Turn State Logging "Off"; defaults to off
+        """
+        if self.FR_Controller != None:
+            if on_or_off:
+                self.FR_Controller.StartLogSending(self.FR_Data.LogType.DetailedLog)
+                self.detailed_onOff = True
+            else:
+                self.FR_Controller.StopLogSending(self.FR_Data.LogType.DetailedLog)
+                self.detailed_onOff = False
         else:
             print "No Controller, connect to FaceReader first."
