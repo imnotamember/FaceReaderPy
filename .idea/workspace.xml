@@ -1,43 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="07aa774c-2a94-4396-b7f4-4ecceeaac6d6" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/FaceReader-PythonBindings.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FaceReaderPy/Dependencies/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FaceReaderPy/FaceReaderBind.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FaceReaderPy/FaceReaderBindCPython.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FaceReaderPy/Implementation.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FaceReaderPy/Test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FaceReaderPy/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FaceReader 5.0 API/FaceReaderAPI.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FaceReader 5.0 API/FaceReaderBind.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FaceReader 5.0 API/FaceReaderBindCPython.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FaceReader 5.0 API/FaceReaderExternalControlSample.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FaceReader 5.0 API/Implementation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FaceReader 5.0 API/Technical Note FaceReader 5.0 Application Programming Interface.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FaceReader 5.0 API/Test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipfile" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python for .NET/python2.6-UCS2/Python.Runtime.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python for .NET/python2.6-UCS2/Python.Runtime.dll.config" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python for .NET/python2.6-UCS2/Python.Test.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python for .NET/python2.6-UCS2/clr.pyd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python for .NET/python2.6-UCS2/clr.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python for .NET/python2.6-UCS2/python.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python for .NET/python2.6-UCS4/Python.Runtime.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python for .NET/python2.6-UCS4/Python.Runtime.dll.config" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python for .NET/python2.6-UCS4/Python.Test.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python for .NET/python2.6-UCS4/clr.pyd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python for .NET/python2.6-UCS4/clr.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python for .NET/python2.6-UCS4/python.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-    </list>
+    <list default="true" id="07aa774c-2a94-4396-b7f4-4ecceeaac6d6" name="Default" comment="First pass at updating scripts and file-structure for integrating into modern projects." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" show_ignored="true">
+    <option name="groupingKeys">
+      <option value="directory" />
+    </option>
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/FaceReader-PythonBindings$Test.coverage" NAME="Test Coverage Results" MODIFIED="1447028339475" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/FaceReader 5.0 API" />
@@ -59,6 +32,7 @@
       </list>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="SET_USER_NAME_GLOBALLY" value="false" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -323,7 +297,7 @@
       <option name="presentableId" value="Default" />
       <updated>1447008257156</updated>
       <workItem from="1668544208054" duration="7476000" />
-      <workItem from="1668554229442" duration="2262000" />
+      <workItem from="1668554229442" duration="2498000" />
     </task>
     <task id="LOCAL-00001" summary="Updated with GPLv3 license and some cleaner code handling.">
       <created>1447038274924</created>
@@ -339,7 +313,14 @@
       <option name="project" value="LOCAL" />
       <updated>1447171511343</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="First pass at updating scripts and file-structure for integrating into modern projects.">
+      <created>1668556819067</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1668556819067</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TodoView">
@@ -381,6 +362,17 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
       <collection />
@@ -392,7 +384,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Updated with GPLv3 license and some cleaner code handling." />
     <MESSAGE value=" Updated FRBCP with some better state logger handling. Also added an implementation file demonstrating how to (hypothetically) get state log info in real time." />
-    <option name="LAST_COMMIT_MESSAGE" value=" Updated FRBCP with some better state logger handling. Also added an implementation file demonstrating how to (hypothetically) get state log info in real time." />
+    <MESSAGE value="First pass at updating scripts and file-structure for integrating into modern projects." />
+    <option name="LAST_COMMIT_MESSAGE" value="First pass at updating scripts and file-structure for integrating into modern projects." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
