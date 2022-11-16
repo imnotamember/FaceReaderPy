@@ -11,23 +11,23 @@ class Controller:
     def __init__(self, ipAdd, portNum):
         self.ipAddress = str(ipAdd)
         self.portNumber = int(portNum)
-        print ipAdd, portNum
-        print self.ipAddress, self.portNumber
+        print((ipAdd, portNum))
+        print((self.ipAddress, self.portNumber))
 
     def connect(self):
         try:
-            print self.ipAddress
-            print self.portNumber
+            print((self.ipAddress))
+            print((self.portNumber))
         except NameError:
-            print "ipAddress and/or portNumber is not defined"
+            print("ipAddress and/or portNumber is not defined")
         try:
-            print self.FR_Controller, 'It Exists'
+            print((self.FR_Controller, 'It Exists'))
             self.FR_Controller.Dispose()
         except:
-            print "It doesn't exist"
+            print("It doesn't exist")
 
         self.FR_Controller = frAPI.FaceReaderController(self.ipAddress, self.portNumber)
-        print "Just created", self.FR_Controller
+        print(("Just created", self.FR_Controller))
 
         try:
             '''
@@ -45,5 +45,5 @@ class Controller:
             ##  Connected will fire, otherwise Disconnected will fire.
             self.FR_Controller.ConnectToFaceReader()
         except:
-            print 'FaceReader is not connected'
-            print self.FR_Controller.Connected
+            print('FaceReader is not connected')
+            print((self.FR_Controller.Connected))

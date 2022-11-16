@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 psychopy = "*"
 wxpython = "==4.1.1"
+pythonnet = "*"
 
 [dev-packages]
 

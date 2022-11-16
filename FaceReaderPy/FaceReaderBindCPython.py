@@ -21,8 +21,6 @@ __author__ = 'Joshua Zosky'
     along with "FaceReader Bindings for Python".  If not, see <http://www.gnu.org/licenses/>.
 """
 
-import clr
-clr.AddReference("FaceReaderAPI")  # Load the FaceReaderAPI.dll from the Python DLL's folder
 from FaceReaderAPI import FaceReaderController as FRController
 from FaceReaderAPI import Data as FRData
 
@@ -31,10 +29,10 @@ class Controller:
 
     def __init__(self, ip_add="127.0.0.1", port_num=9090):
         """
-
         Define initial values and add an IP address(string) and Port number(integer)
-        :param self.state_onOff: Bool value, True = turn State Logging on; False = turn State Logging off
-        :param self.detailed_onOff: Bool value, True = turn Detailed Logging on; False = turn Detailed Logging off
+
+        :param: self.state_onOff: Bool value, True = turn State Logging on; False = turn State Logging off
+        :param: self.detailed_onOff: Bool value, True = turn Detailed Logging on; False = turn Detailed Logging off
         """
         self.ipAddress = str(ip_add)
         self.portNumber = int(port_num)
@@ -49,38 +47,38 @@ class Controller:
         self.currentEvents = {}
         self.state_onOff = False
         self.detailed_onOff = False
-        print ip_add, port_num
-        print self.ipAddress, self.portNumber
-        print self.FR_Controller
+        print(ip_add, port_num)
+        print(self.ipAddress, self.portNumber)
+        print(self.FR_Controller)
 
     # # Event Handlers # #
     @staticmethod
     def frc_available_stimuli_received(source, args):
-        print "Stimuli received:\n%s" % args.Stimuli
+        print("Stimuli received:\n%s" % args.Stimuli)
 
     @staticmethod
     def frc_available_event_markers_received(source, args):
-        print "Event Markers received:\n%s" % args.EventMarkers
+        print("Event Markers received:\n%s" % args.EventMarkers)
 
     @staticmethod
     def frc_error_occurred(source, args):
-        print "Error occurred %s" % args.Message
+        print("Error occurred %s" % args.Message)
 
     @staticmethod
     def frc_action_succeeded(source, args):
-        print "Action Succeeded: %s" % args.Message
+        print("Action Succeeded: %s" % args.Message)
 
     @staticmethod
     def frc_connected(source, args):
-        print "Connection to FaceReader was successful"
+        print("Connection to FaceReader was successful")
 
     @staticmethod
     def frc_disconnected(source, args):
-        print "Disconnected"
+        print("Disconnected")
 
     def frc_classification_received(self, source, args):
         """get the classification from the event arguments"""
-        print source
+        print(source)
         self.classification = args.Classification
         # FaceReaderAPI.Data.Classification classification = e.Classification
         # # if a classification was received
@@ -88,45 +86,45 @@ class Controller:
             # if the classification is in the form of a StateLogs
             if self.classification.LogType == self.FR_Data.LogType.StateLog:
                 # show the information
-                #print "State Log: %s" % self.classification
-                #self.state_log_list.append(self.classification)
+                # print "State Log: %s" % self.classification
+                # self.state_log_list.append(self.classification)
                 self.state_log = self.classification
                 # if the classification is in the form of a DetailedLog
             else:
                 # show the information
-                #print "Detailed Log: %s" % self.classification
-                #self.detailed_log_list.append(self.classification)
+                # print "Detailed Log: %s" % self.classification
+                # self.detailed_log_list.append(self.classification)
                 self.detailed_log = self.classification
 
     # # Methods # #
     def check(self):
         """Check if the controller is instantiated and has an IP address and Port number"""
         try:
-            print self.ipAddress
-            print self.portNumber
-        except NameError, e:
-            print e
+            print(self.ipAddress)
+            print(self.portNumber)
+        except NameError as e:
+            print(e)
         if self.FR_Controller is not None:
-            print 'It Exists'
+            print('It Exists')
             self.FR_Controller.Dispose()
         else:
-            print "Doesn't exist"
+            print("Doesn't exist")
 
         self.FR_Controller = FRController(self.ipAddress, self.portNumber)
 
-        print "Just created", self.FR_Controller
+        print("Just created", self.FR_Controller)
 
     def connect(self):
         """Instantiate Event Handlers and attempt to connect to FaceReader"""
         if self.FR_Controller is not None:
-            print 'It Exists'
+            print('It Exists')
             self.FR_Controller.Dispose()
         else:
-            print "Doesn't exist"
+            print("Doesn't exist")
 
         self.FR_Controller = FRController(self.ipAddress, self.portNumber)
 
-        print "Just created", self.FR_Controller
+        print("Just created", self.FR_Controller)
 
         self.FR_Controller.ClassificationReceived += self.frc_classification_received
         self.FR_Controller.Disconnected += self.frc_disconnected
@@ -145,10 +143,11 @@ class Controller:
             # # if there is a connection, disconnect
             if self.FR_Controller.IsConnected:
                 self.FR_Controller.DisconnectFromFaceReader()
+                print("Disconnected")
             else:
-                print "There is no connection to disconnect"
+                print("There is no connection to disconnect")
         else:
-            print "object doesn't exist"
+            print("object doesn't exist")
 
     def start_recording(self):
         """Begin recording in FaceReader(FaceReader refers to this as ANALYSIS, but it's just recording video/data)"""
@@ -157,8 +156,7 @@ class Controller:
             self.FR_Controller.StartAnalyzing()
         except:
             self.isRecording = False
-            print "Not connected to FaceReader"
-
+            print("Not connected to FaceReader")
 
     def stop_recording(self):
         """End recording in FaceReader(FaceReader refers to this as ANALYSIS, but it's just recording video/data)"""
@@ -166,18 +164,18 @@ class Controller:
         try:
             self.FR_Controller.StopAnalyzing()
         except:
-            print "Not connected to FaceReader"
+            print("Not connected to FaceReader")
 
     def start_event_marker(self, event_name):
         """
-
-        :param event_name: a list of currently observed events(can be multiple with different names)
         Send starting point of event called event_name.
         This event must be followed by an 'end_event_marker' to end the event.
         In FaceReader an event is a time frame of interest in a recording,
         which has both a start and stopping point.
         The event is added to the currentEvents list to
         check later if it has been started in order to stop.
+
+        :param: event_name: a list of currently observed events(can be multiple with different names)
         """
         event_name = str(event_name)
         self.currentEvents[event_name] = True
@@ -185,14 +183,14 @@ class Controller:
 
     def stop_event_marker(self, event_name):
         """
-
-        :param event_name: a list of currently observed events(can be multiple with different names)
         Send stopping point of event called event_name.
         This event must be preceded by a 'start_event_marker' to begin the event.
         In FaceReader an event is a time frame of interest in a recording,
         which has both a start and stopping point.
-        The event is thusly removed from the currentEvents list to
+        The event is then removed from the currentEvents list to
         prevent mistakenly trying to stop an already stopped event.
+
+        :param: event_name: a list of currently observed events(can be multiple with different names)
         """
         event_name = str(event_name)
         try:
@@ -200,15 +198,15 @@ class Controller:
                 self.FR_Controller.ScoreEventMarker(event_name)
                 self.currentEvents[event_name] = False
             else:
-                print "%s hasn't been restarted yet." % event_name
+                print("%s hasn't been restarted yet." % event_name)
         except:
-            print "%s hasn't been started yet." % event_name
+            print("%s hasn't been started yet." % event_name)
 
     def state_logging(self, on_or_off=False):
         """Toggle State Logging to on/off, to retrieve State Log info, check the self.state_log variable
-        :param on_or_off: True = Turn State Logging "On"; False = Turn State Logging "Off"; defaults to off
+        :param: on_or_off: True = Turn State Logging "On"; False = Turn State Logging "Off"; defaults to off
         """
-        if self.FR_Controller != None:
+        if self.FR_Controller is not None:
             if on_or_off:
                 self.FR_Controller.StartLogSending(self.FR_Data.LogType.StateLog)
                 self.state_onOff = True
@@ -216,12 +214,13 @@ class Controller:
                 self.FR_Controller.StopLogSending(self.FR_Data.LogType.StateLog)
                 self.state_onOff = False
         else:
-            print "No Controller, connect to FaceReader first."
-        def detailed_logging(self, on_or_off=False):
+            print("No Controller, connect to FaceReader first.")
+
+    def detailed_logging(self, on_or_off=False):
         """Toggle State Logging to on/off, to retrieve State Log info, check the self.state_log variable
-        :param on_or_off: True = Turn State Logging "On"; False = Turn State Logging "Off"; defaults to off
+        :param: on_or_off: True = Turn State Logging "On"; False = Turn State Logging "Off"; defaults to off
         """
-        if self.FR_Controller != None:
+        if self.FR_Controller is not None:
             if on_or_off:
                 self.FR_Controller.StartLogSending(self.FR_Data.LogType.DetailedLog)
                 self.detailed_onOff = True
@@ -229,4 +228,4 @@ class Controller:
                 self.FR_Controller.StopLogSending(self.FR_Data.LogType.DetailedLog)
                 self.detailed_onOff = False
         else:
-            print "No Controller, connect to FaceReader first."
+            print("No Controller, connect to FaceReader first.")
